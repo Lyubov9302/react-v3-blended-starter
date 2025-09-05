@@ -1,5 +1,17 @@
 import Grid from "../Grid/Grid";
 
-export default function PhotosGallery() {
-  return <Grid>{/* PhotosGalleryItems */}</Grid>;
+interface PhotosProps {
+  array: Photos[];
+}
+
+export default function PhotosGallery({ array }: PhotosProps) {
+  return (
+    <Grid>
+      {array.map((arr) => (
+        <GridItem>
+          <PhotosGalleryItem />
+        </GridItem>
+      ))}
+    </Grid>
+  );
 }

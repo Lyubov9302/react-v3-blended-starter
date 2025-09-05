@@ -3,9 +3,26 @@ import toast from "react-hot-toast";
 
 import style from "./Form.module.css";
 
-export default function Form() {
+interface FormProps {
+  onSubmit: (search: string) => void;
+}
+
+export default function Form({ onSubmit }: FormProps) {
+  const handleSubmit = (formData: FormData) => {
+    const search = formData.get("search") as string;
+
+    if (search === "") {
+      alert("Please enter search topic!");
+      return;
+    }
+    onSubmit(search);
+  };
+
   return (
-    <form className={style.form}>
+    <form
+      className={style.form}
+      action={handleSubmit}
+    >
       <input
         className={style.input}
         placeholder="What do you want to write?"
@@ -13,7 +30,10 @@ export default function Form() {
         autoFocus
       />
 
-      <button className={style.button} type="submit">
+      <button
+        className={style.button}
+        type="submit"
+      >
         <FiSearch size="16px" />
       </button>
     </form>
