@@ -43,8 +43,8 @@ export default function App() {
           {isModalOpen && (
             <Modal onClose={closeModal}>
               <img
-                src={arr.id}
-                alt={}
+              // src={arr.id}
+              // alt={}
               />
             </Modal>
           )}

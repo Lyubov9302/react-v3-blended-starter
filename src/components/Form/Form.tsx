@@ -1,7 +1,6 @@
 import { FiSearch } from "react-icons/fi";
 import toast from "react-hot-toast";
-
-import style from "./Form.module.css";
+import css from "./Form.module.css";
 
 interface FormProps {
   onSubmit: (search: string) => void;
@@ -20,18 +19,18 @@ export default function Form({ onSubmit }: FormProps) {
 
   return (
     <form
-      className={style.form}
+      className={css.form}
       action={handleSubmit}
     >
       <input
-        className={style.input}
+        className={css.input}
         placeholder="What do you want to write?"
         name="search"
         autoFocus
       />
 
       <button
-        className={style.button}
+        className={css.button}
         type="submit"
       >
         <FiSearch size="16px" />
