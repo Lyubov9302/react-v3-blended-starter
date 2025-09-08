@@ -10,8 +10,8 @@ export default function Form({ onSubmit }: FormProps) {
   const handleSubmit = (formData: FormData) => {
     const search = formData.get("search") as string;
 
-    if (search === "") {
-      alert("Please enter search topic!");
+    if (search.trim() === "") {
+      toast.error("Please enter search topic!");
       return;
     }
     onSubmit(search);

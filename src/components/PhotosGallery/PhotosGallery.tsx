@@ -1,17 +1,23 @@
-import Grid from "../Grid/Grid";
+import { Photo } from "../../types/photo";
+import PhotosGalleryItem from "../PhotosGalleryItem/PhotosGalleryItem";
+import css from "./PhotosGallery.module.css";
 
 interface PhotosProps {
-  array: Photos[];
+  items: Photo[];
+  onSelect: (photo: Photo) => void;
 }
 
-export default function PhotosGallery({ array }: PhotosProps) {
+export default function PhotosGallery({ items, onSelect }: PhotosProps) {
   return (
-    <Grid>
-      {array.map((arr) => (
-        <GridItem>
-          <PhotosGalleryItem />
-        </GridItem>
+    <ul className={css.gallery}>
+      {items.map((photo) => (
+        <li key={photo.id}>
+          <PhotosGalleryItem
+            item={photo}
+            onClick={onSelect}
+          />
+        </li>
       ))}
-    </Grid>
+    </ul>
   );
 }

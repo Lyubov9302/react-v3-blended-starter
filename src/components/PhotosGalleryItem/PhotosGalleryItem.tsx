@@ -1,18 +1,28 @@
+import { Photo } from "../../types/photo";
 import GridItem from "../GridItem/GridItem";
+import css from "./PhotosGalleryItem.module.css";
+import noImagePlaceholder from "../../assets/no-image-svgrepo-com.svg";
 
-import styles from "./PhotosGalleryItem.module.css";
+interface PhotosGalleryItemProps {
+  item: Photo;
+  onClick: (photo: Photo) => void;
+}
 
-export default function PhotosGalleryItem() {
+export default function PhotosGalleryItem({
+  item,
+  onClick,
+}: PhotosGalleryItemProps) {
+  console.log(item);
   return (
     <GridItem>
       <div
-        className={styles.thumb}
-        style={{
-          backgroundColor: "avg_color",
-          borderColor: "avg_color",
-        }}
+        className={css.thumb}
+        onClick={() => onClick(item)}
       >
-        <img src="" alt="" />
+        <img
+          src={item.src?.[0]?.original || noImagePlaceholder}
+          alt={item.alt}
+        />
       </div>
     </GridItem>
   );

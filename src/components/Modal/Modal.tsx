@@ -1,7 +1,7 @@
-import styled from "./Modal.module.css";
+import css from "./Modal.module.css";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
-import css from "./Modal.module.css";
+import { Photo } from "../../types/photo";
 
 interface ModalProps {
   onClose: () => void;

@@ -12,11 +12,7 @@ export default function App() {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => setIsModalOpen(true);
-
-  const closeModal = () => setIsModalOpen(false);
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
 
   const handleSearch = async (search: string) => {
     try {
@@ -24,11 +20,20 @@ export default function App() {
       setIsError(false);
       const data = await getPhotos(search);
       setPhotos(data);
+      console.log(data);
     } catch {
       setIsError(true);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handlePhotoClick = (photo: Photo) => {
+    setSelectedPhoto(photo);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedPhoto(null);
   };
 
   return (
@@ -38,18 +43,22 @@ export default function App() {
           <Form onSubmit={handleSearch} />
           {isLoading && <Loader />}
           {isError && <p>Whoops, something went wrong! Please try again!</p>}
-          {photos.length > 0 && <PhotosGallery array={photos} />}
-          <button onClick={openModal}>Open modal</button>
-          {isModalOpen && (
-            <Modal onClose={closeModal}>
-              <img
-              // src={arr.id}
-              // alt={}
-              />
-            </Modal>
+          {photos.length > 0 && (
+            <PhotosGallery
+              items={photos}
+              onSelect={handlePhotoClick}
+            />
           )}
         </Container>
       </Section>
+      {selectedPhoto && (
+        <Modal onClose={handleCloseModal}>
+          <img
+            src={selectedPhoto?.src[0]?.original}
+            alt={selectedPhoto?.alt}
+          />
+        </Modal>
+      )}
     </>
   );
 }
