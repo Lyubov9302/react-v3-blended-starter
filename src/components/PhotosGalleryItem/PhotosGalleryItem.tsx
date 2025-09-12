@@ -12,7 +12,6 @@ export default function PhotosGalleryItem({
   item,
   onClick,
 }: PhotosGalleryItemProps) {
-  console.log(item);
   return (
     <GridItem>
       <div
@@ -20,7 +19,7 @@ export default function PhotosGalleryItem({
         onClick={() => onClick(item)}
       >
         <img
-          src={item.src?.[0]?.original || noImagePlaceholder}
+          src={item.src.original || noImagePlaceholder}
           alt={item.alt}
         />
       </div>

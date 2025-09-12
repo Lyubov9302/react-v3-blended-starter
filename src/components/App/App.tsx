@@ -54,7 +54,7 @@ export default function App() {
       {selectedPhoto && (
         <Modal onClose={handleCloseModal}>
           <img
-            src={selectedPhoto?.src[0]?.original}
+            src={selectedPhoto?.src?.original}
             alt={selectedPhoto?.alt}
           />
         </Modal>
