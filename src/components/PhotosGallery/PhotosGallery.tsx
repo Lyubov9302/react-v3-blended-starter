@@ -14,7 +14,7 @@ export default function PhotosGallery({ items, onSelect }: PhotosProps) {
         <li key={photo.id}>
           <PhotosGalleryItem
             item={photo}
-            onClick={onSelect}
+            onClick={() => onSelect(photo)}
           />
         </li>
       ))}

@@ -5,7 +5,7 @@ import noImagePlaceholder from "../../assets/no-image-svgrepo-com.svg";
 
 interface PhotosGalleryItemProps {
   item: Photo;
-  onClick: (photo: Photo) => void;
+  onClick: () => void;
 }
 
 export default function PhotosGalleryItem({
@@ -16,7 +16,7 @@ export default function PhotosGalleryItem({
     <GridItem>
       <div
         className={css.thumb}
-        onClick={() => onClick(item)}
+        onClick={onClick}
       >
         <img
           src={item.src.original || noImagePlaceholder}
