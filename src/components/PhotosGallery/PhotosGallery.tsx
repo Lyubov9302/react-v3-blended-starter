@@ -1,6 +1,7 @@
 import { Photo } from "../../types/photo";
 import PhotosGalleryItem from "../PhotosGalleryItem/PhotosGalleryItem";
-import css from "./PhotosGallery.module.css";
+import Grid from "../Grid/Grid";
+import GridItem from "../GridItem/GridItem";
 
 interface PhotosProps {
   items: Photo[];
@@ -9,15 +10,15 @@ interface PhotosProps {
 
 export default function PhotosGallery({ items, onSelect }: PhotosProps) {
   return (
-    <ul className={css.gallery}>
+    <Grid>
       {items.map((photo) => (
-        <li key={photo.id}>
+        <GridItem key={photo.id}>
           <PhotosGalleryItem
             item={photo}
             onClick={() => onSelect(photo)}
           />
-        </li>
+        </GridItem>
       ))}
-    </ul>
+    </Grid>
   );
 }
